@@ -103,6 +103,44 @@
 		)
 	);
 
+	// Infinite loop defect (fixed) (minimal failure case)
+	// S -> A
+	// A -> A S | epsilon
+	demo(
+		new ContextFreeGrammar(
+			"<S>",
+			array(),
+			array("<A>"),
+			array(
+				new Rule("<S>", array("<A>")),
+				new Rule("<A>", array("<A>", "<S>")),
+				new Rule("<A>", array())
+			)
+		)
+	);
+
+	// Infinite loop defect (fixed) (original failure case)
+	// S -> A B B A | B
+	// A -> 0 A 0 | 1 | epsilon
+	// B -> B S | A A A | 0 0
+	demo(
+		new ContextFreeGrammar(
+			"<S>",
+			array("0", "1"),
+			array("<A>", "<B>"),
+			array(
+				new Rule("<S>", array("<A>", "<B>", "<B>", "<A>")),
+				new Rule("<S>", array("<B>")),
+				new Rule("<A>", array()),
+				new Rule("<A>", array("0", "<A>", "0")),
+				new Rule("<A>", array("1")),
+				new Rule("<B>", array("<B>", "<S>")),
+				new Rule("<B>", array("<A>", "<A>", "<A>")),
+				new Rule("<B>", array("0", "0"))
+			)
+		)
+	);
+
 	// A rough approximation of the BNF specification
 	demo(
 		new ContextFreeGrammar(
