@@ -21,17 +21,12 @@
 	demo(
 		new ContextFreeGrammar(
 			"<S>",
-			array("0", "1"),
-			array("<A>", "<B>"),
+			array("a", "b", "c"),
+			array("<A>"),
 			array(
-				new Rule("<S>", array("<A>", "<B>", "<B>", "<A>")),
-				new Rule("<S>", array("<B>")),
-				new Rule("<A>", array()),
-				new Rule("<A>", array("0", "<A>", "0")),
-				new Rule("<A>", array("1")),
-				new Rule("<B>", array("<B>", "<S>")),
-				new Rule("<B>", array("<A>", "<A>", "<A>")), 
-				new Rule("<B>", array("0", "0"))
+				new Rule("<S>", array("<A>", "c")),
+				new Rule("<A>", array("a")),
+				new Rule("<A>", array("b"))
 			)
 		)
 	);
